@@ -6,6 +6,7 @@ import '@tensorflow/tfjs-backend-webgl';
 import Webcam from 'react-webcam';
 import { useRef } from "react"
 import { drawKeypoints, drawSkeleton, drawCanvas } from '../utils/draw_utils';
+import { Stack } from '@mui/material';
 const AngleDetector = () => {
     const webcamRef = useRef<Webcam>(null);
     const canvasRef = useRef(null);
@@ -83,42 +84,53 @@ const AngleDetector = () => {
     };
 
     runMovenet();
-
+    const [cameraRear, setCameraRear] = React.useState(false)
     return (
         <>
-            <Webcam
-                ref={webcamRef}
-                videoConstraints={{
-                    width: 300,
-                    height: 300
-                }}
+            <Stack alignItems="center" gap={10} py={5}>
+                <select onChange={(e) => setCameraRear(e.target.value === "true")}>
+                    <option value={"false"}>Front Camera</option>
+                    <option value={"true"}>Rear Camera</option>
+                </select>
+                <div>
 
-                style={{
-                    position: "absolute",
-                    marginLeft: "auto",
-                    marginRight: "auto",
-                    left: 0,
-                    right: 0,
-                    textAlign: "center",
-                    zIndex: 9,
-                    // width: "100%",
-                }}
-            />
-            <canvas
-                ref={canvasRef}
-                style={{
-                    position: "absolute",
-                    marginLeft: "auto",
-                    marginRight: "auto",
-                    left: 0,
-                    right: 0,
-                    textAlign: "center",
-                    zIndex: 9,
-                    width: 300,
-                    height: 300
-                }}
+                    <Webcam
+                        ref={webcamRef}
+                        videoConstraints={{
+                            width: 300,
+                            height: 300,
+                            facingMode: cameraRear ? "environment" : "user"
+                        }}
 
-            />
+                        style={{
+                            position: "absolute",
+                            marginLeft: "auto",
+                            marginRight: "auto",
+                            left: 0,
+                            right: 0,
+                            textAlign: "center",
+                            zIndex: 9,
+                            // width: "100%",
+                        }}
+                    />
+                    <canvas
+                        ref={canvasRef}
+                        style={{
+                            position: "absolute",
+                            marginLeft: "auto",
+                            marginRight: "auto",
+                            left: 0,
+                            right: 0,
+                            textAlign: "center",
+                            zIndex: 9,
+                            width: 300,
+                            height: 300
+                        }}
+
+                    />
+                </div>
+
+            </Stack>
 
         </>
     )

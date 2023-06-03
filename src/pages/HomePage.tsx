@@ -1,5 +1,6 @@
 import { useNavigate } from 'react-router-dom'
 import { Button, Stack } from '@mui/material'
+import TouchDetector from '../components/TouchDetector'
 const HomePage = () => {
   const navigate = useNavigate()
   return (
@@ -35,6 +36,7 @@ const HomePage = () => {
       >
         Romberg's test
       </Button>
+      <TouchDetector />
     </Stack>
   )
 }
