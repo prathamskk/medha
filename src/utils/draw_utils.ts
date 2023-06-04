@@ -129,7 +129,7 @@ export function drawAngle(
     let referencePosition: [number, number] = [150, 0]
 
     let angle = calculateAngle(nosePosition, bodyCenterPosition, referencePosition)
-    console.log(angle);
+    // console.log(angle);
 
     const noseYPosition = keypoints[0].y;
     const noseXPosition = keypoints[0].x;
