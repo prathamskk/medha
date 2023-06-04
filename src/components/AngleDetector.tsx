@@ -20,7 +20,7 @@ var updateInterval = 1000;
 
 const AngleDetector = () => {
     const [, updateState] = React.useState();
-    const forceUpdate = React.useCallback(() => updateState({}), []);
+    const forceUpdate = React.useCallback(() => updateState(undefined), []);
 
     const webcamRef = useRef<Webcam>(null);
     const canvasRef = useRef(null);
