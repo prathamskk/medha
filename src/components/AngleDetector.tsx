@@ -7,16 +7,15 @@ import Webcam from 'react-webcam';
 import { useRef } from "react"
 import { drawKeypoints, drawSkeleton, drawCanvas } from '../utils/draw_utils';
 import { Stack } from '@mui/material';
-//@ts-ignore
-import CanvasJSReact from '@canvasjs/react-charts';
+// import CanvasJSReact from '@canvasjs/react-charts';
 
-var CanvasJS = CanvasJSReact.CanvasJS;
-var CanvasJSChart = CanvasJSReact.CanvasJSChart;
-var dps = [
-    { x: 0, y: 0 }];
-var xVal = dps.length + 1;
-var yVal = 0;
-var updateInterval = 1000;
+// var CanvasJS = CanvasJSReact.CanvasJS;
+// var CanvasJSChart = CanvasJSReact.CanvasJSChart;
+// var dps = [
+//     { x: 0, y: 0 }];
+// var xVal = dps.length + 1;
+// var yVal = 0;
+// var updateInterval = 1000;
 
 const AngleDetector = () => {
     const [, updateState] = React.useState();
@@ -67,7 +66,7 @@ const AngleDetector = () => {
                     videoHeight,
                     canvasRef,
                 );
-                updateChart(await handlePose(poses) || 0);
+                // updateChart(await handlePose(poses) || 0);
 
             }
         }
@@ -97,17 +96,17 @@ const AngleDetector = () => {
             console.error(error);
         }
     };
-    const chartRef = useRef(null);
-    const updateChart = (angle: number) => {
-        yVal = yVal + Math.round(5 + Math.random() * (-5 - 5));
-        dps.push({ x: xVal, y: angle });
-        xVal++;
-        if (dps.length > 10) {
-            dps.shift();
-        }
-        // chartRef.current.render();
-        forceUpdate()
-    };
+    // const chartRef = useRef(null);
+    // const updateChart = (angle: number) => {
+    //     yVal = yVal + Math.round(5 + Math.random() * (-5 - 5));
+    //     dps.push({ x: xVal, y: angle });
+    //     xVal++;
+    //     if (dps.length > 10) {
+    //         dps.shift();
+    //     }
+    //     // chartRef.current.render();
+    //     forceUpdate()
+    // };
 
     // useEffect(() => {
     //     const updateChart = () => {
@@ -128,25 +127,25 @@ const AngleDetector = () => {
     //     };
     // }, []);
 
-    const options = {
-        title: {
-            text: "Romberg Sway"
-        },
-        data: [
-            {
-                type: "line",
-                dataPoints: dps
-            }
-        ],
-        axisY: {
-            interval: 5,
-            maximum: 60,
-            minimum: -60
-        },
-        axisX: {
-            interval: 1,
-        }
-    };
+    // const options = {
+    //     title: {
+    //         text: "Romberg Sway"
+    //     },
+    //     data: [
+    //         {
+    //             type: "line",
+    //             dataPoints: dps
+    //         }
+    //     ],
+    //     axisY: {
+    //         interval: 5,
+    //         maximum: 60,
+    //         minimum: -60
+    //     },
+    //     axisX: {
+    //         interval: 1,
+    //     }
+    // };
     runMovenet();
     const [cameraRear, setCameraRear] = React.useState(false)
     return (
@@ -194,7 +193,7 @@ const AngleDetector = () => {
                     />
                 </div>
 
-                <CanvasJSChart options={options} ref={chartRef} />
+                {/* <CanvasJSChart options={options} ref={chartRef} /> */}
             </Stack>
 
         </>
