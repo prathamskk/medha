@@ -5,6 +5,7 @@ import touchpng from '../assets/left-click.png'
 import { Stack } from '@mui/material'
 const TouchDetector = () => {
     const [touchRead, setTouchRead] = React.useState(0)
+    const [threshold, setThreshold] = React.useState(40)
 
     useEffect(() => {
         //read realtime database value to get reading at url /touchRead
@@ -23,11 +24,13 @@ const TouchDetector = () => {
 
     return (
 
-        <Stack alignItems="center" height={250}>
+        <Stack alignItems="center" height={300}>
             <div>Touch Detector</div>
+            <div>Threshold: {threshold}</div>
+            <input type="range" min={0} max={100} value={threshold} onChange={(e) => setThreshold(parseInt(e.target.value))} />
 
 
-            {touchRead <= 60 ? <><img src={touchpng} width={200} /><div>Touch Detected</div></> : <div>No Touch Detected</div>}
+            {touchRead <= threshold ? <><img src={touchpng} width={200} /><div>Touch Detected</div></> : <div>No Touch Detected</div>}
 
         </Stack>
     )
